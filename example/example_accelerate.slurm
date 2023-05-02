@@ -9,13 +9,12 @@
 #SBATCH --time=00:50:00
 #SBATCH --qos=qos_gpu-dev
 #SBATCH --cpus-per-task=40
-#SBATCH --account=<add account>@v100
+#SBATCH --account=account@v100
 #SBATCH -C v100-16g
 
 
 ## load Pytorch module
 module purge
-
 module load bloom
 
 ## launch script on every node
@@ -23,4 +22,4 @@ set -x
 
 # code execution
 python idr_accelerate.py
-srun bash -c 'accelerate launch --config ./config_accelerate_rank${SLURM_PROCID}.yaml finetune_imdb_accelerate.py'
+srun bash -c 'accelerate launch --config ./config_accelerate_rank${SLURM_PROCID}.yaml train_accelerate.py'
