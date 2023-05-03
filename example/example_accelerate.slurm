@@ -21,6 +21,5 @@ set -x
 
 # prepare accelerate config on node
 idr_accelerate
-
 # code execution
-srun bash -c 'accelerate launch --config ./config_accelerate_rank${SLURM_PROCID}.yaml train_accelerate.py'
+srun bash -c 'accelerate launch --config .accelerate_config/${SLURM_PROCID}.yaml train_accelerate.py'
