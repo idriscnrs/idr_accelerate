@@ -12,7 +12,6 @@
 #SBATCH --account=account@v100
 #SBATCH -C v100-16g
 
-
 ## load Pytorch module
 module purge
 module load bloom
@@ -20,6 +19,8 @@ module load bloom
 ## launch script on every node
 set -x
 
+# prepare accelerate config on node
+idr_accelerate
+
 # code execution
-python idr_accelerate.py
 srun bash -c 'accelerate launch --config ./config_accelerate_rank${SLURM_PROCID}.yaml train_accelerate.py'
