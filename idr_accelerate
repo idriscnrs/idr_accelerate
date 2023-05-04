@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import yaml
 
@@ -7,6 +8,8 @@ num_machines = int(os.environ['SLURM_NNODES'])
 nb_gpus = len(os.environ['SLURM_JOB_GPUS'].split(','))
 num_processes = num_machines * nb_gpus
 
+if not os.path.exists('.accelerate_config/'):
+    os.makedirs('.accelerate_config/')
 
 for machine_rank in range(num_machines):
     config_accelerate = {
@@ -33,5 +36,6 @@ for machine_rank in range(num_machines):
         'use_cpu': False,
     }
 
-    with open(f"./config_accelerate_rank{machine_rank}.yaml", "w") as file:
+    with open(f".accelerate_config/{machine_rank}.yaml", "w") as file:
         yaml.dump(config_accelerate, file)
+        
