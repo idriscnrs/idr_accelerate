@@ -1,14 +1,12 @@
 # idr_accelerate
-## WORK IN PROGRESS !!!
-
 
 ## Description
 
 Make Accelerate on Jean Zay easy.
 
 ## Usage
-idr_accelerate.py is a script to create the right config files to use Accelerate with several nodes on Jean Zay.
-It should be run once on the main process node first to create the config files, then eache node will run (thanks to srun) the python script with the right config file (with the command srun bash -c '...').
+idr_accelerate is a script to create the right config files to use Accelerate with several nodes on Jean Zay. It is a launcher which should be run on every node (with srun for instance) and given the training script. It is possible to use a config file with it for accelerate, as well as give it flags for the accelerate launcher or your own script.
+
 
 Follow the example to have a better understanding.
 
@@ -26,14 +24,9 @@ Follow the example to have a better understanding.
 
 ## load module
 module purge
-module load bloom
+module load llm
 
-## echo launch commands
-set -x
-
-# code execution
-idr_accelerate
-srun bash -c 'accelerate launch --config ./config_accelerate_rank${SLURM_PROCID}.yaml train.py'
+srun idr_accelerate --config_file myconfig.json --zero_stage 3 --epochs 100 train.py --lr 0.5
 ```
 
 ## Installation
@@ -41,15 +34,5 @@ srun bash -c 'accelerate launch --config ./config_accelerate_rank${SLURM_PROCID}
 ```bash
 git clone https://idrforge.prive.idris.fr/assistance/installations/idr_accelerate.git
 cd idr_accelerate
-cp idr_accelerate   $CONDA_PREFIX/bin/.
-```
-
-## Local test
-```bash
-chmod +x idr_accelerate
-# add idr_accelerate dir to the path
-export $PATH=$PWD:PATH
-
-# use from anywhere
-idr_accelerate
+pip install .
 ```
