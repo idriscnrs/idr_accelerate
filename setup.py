@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="idr_accelerate",
@@ -11,9 +11,7 @@ setup(
     url="https://www.idris.fr",
     packages=find_packages(),
     entry_points={
-        'console_scripts': [
-            'idr_accelerate = idr_accelerate.launcher:run'
-        ],
+        "console_scripts": ["idr_accelerate = idr_accelerate.launcher:run"],
     },
     install_requires=[
         "accelerate",
