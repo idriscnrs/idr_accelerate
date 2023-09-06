@@ -1,17 +1,15 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-
 from setuptools import find_packages, setup
 
 PACKAGE_NAME = "idr_accelerate"
-VERSIONFILE = "VERSION"
+VERSIONFILE = "VERSION.txt"
 AUTHOR = "IDRIS"
 AUTHOR_EMAIL = "assist@idris.fr"
 URL = "https://www.idris.fr"
 
-with open(os.path.join(PACKAGE_NAME, VERSIONFILE), "r") as file:
+with open(VERSIONFILE, "r") as file:
     VERSION = file.read().strip()
 
 setup(

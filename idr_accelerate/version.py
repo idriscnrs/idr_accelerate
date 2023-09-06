@@ -1,7 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from pathlib import Path
+from importlib.metadata import version
 
-with open(Path(__file__).parent / "VERSION", "r") as file:
-    __version__ = file.read().strip()
+from . import __name__
+
+__version__ = version(__name__)
