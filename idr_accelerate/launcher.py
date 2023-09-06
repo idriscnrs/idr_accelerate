@@ -28,7 +28,7 @@ def make_config_file_parser(accelerate_parser: ArgumentParser) -> ArgumentParser
 
 
 def torch2_or_after() -> bool:
-    return torch.__version__ >= Version("2.0.0")
+    return Version(torch.__version__) >= Version("2.0.0")
 
 
 def get_user_config_from_file(user_config_file: Optional[Path]) -> Dict[str, Any]:
