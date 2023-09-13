@@ -11,6 +11,8 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 accelerator = Accelerator()
 DEVICE = accelerator.device
 
+accelerator.print(accelerator.distributed_type)
+
 torch.manual_seed(53)
 torch.cuda.manual_seed(53)
 
