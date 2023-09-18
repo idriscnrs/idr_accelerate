@@ -1,0 +1,27 @@
+Loading llm/pytorch/2.0.0
+  Loading requirement: cuda/11.7.1 nccl/2.12.12-1-cuda cudnn/8.5.0.96-11.7-cuda
+    gcc/8.5.0 openmpi/4.1.1-cuda intel-mkl/2020.4 magma/2.7.0-cuda sox/14.4.2
+    sparsehash/2.0.3 libjpeg-turbo/2.1.3 pytorch-gpu/py3/2.0.0
+[2023-09-15 14:36:35,410] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-09-15 14:36:36,878] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+zaerfdfgbdfgh
+zaerfdfgbdfgh
+Traceback (most recent call last):
+  File "/gpfslocalsup/src/pub/anaconda-py3/2023.03/llm-pytorch-2.0.0/local/bin/idr_accelerate", line 8, in <module>
+    sys.exit(run())
+  File "/gpfsdswork/projects/idris/sos/ssos029/idr_accelerate/.local_accelerate/lib/python3.10/site-packages/idr_accelerate/launcher.py", line 112, in run
+    user_config = get_user_config_from_file(idr_args.config_file)
+  File "/gpfsdswork/projects/idris/sos/ssos029/idr_accelerate/.local_accelerate/lib/python3.10/site-packages/idr_accelerate/launcher.py", line 40, in get_user_config_from_file
+    raise ValueError(f"{user_config_file} does not exist or is not a file.")
+ValueError: configs/accelerate_deepspeed.yaml does not exist or is not a file.
+Traceback (most recent call last):
+  File "/gpfslocalsup/src/pub/anaconda-py3/2023.03/llm-pytorch-2.0.0/local/bin/idr_accelerate", line 8, in <module>
+    sys.exit(run())
+  File "/gpfsdswork/projects/idris/sos/ssos029/idr_accelerate/.local_accelerate/lib/python3.10/site-packages/idr_accelerate/launcher.py", line 112, in run
+    user_config = get_user_config_from_file(idr_args.config_file)
+  File "/gpfsdswork/projects/idris/sos/ssos029/idr_accelerate/.local_accelerate/lib/python3.10/site-packages/idr_accelerate/launcher.py", line 40, in get_user_config_from_file
+    raise ValueError(f"{user_config_file} does not exist or is not a file.")
+ValueError: configs/accelerate_deepspeed.yaml does not exist or is not a file.
+srun: error: r14i6n7: task 0: Exited with exit code 1
+srun: Terminating StepId=1950229.0
+srun: error: r14i6n8: task 1: Exited with exit code 1

@@ -1,0 +1,25 @@
+{
+    "fp16": {
+        "enabled": true,
+        "auto_cast": true
+    },
+    "zero_optimization": {
+        "stage": 2,
+        "offload_optimizer": {
+            "device": "none", 
+            "nvme_path": null}, 
+        "offload_param": {
+            "device": "none", 
+            "nvme_path": null},
+        
+        "allgather_partitions": true,
+        "allgather_bucket_size": 2e8,
+        "overlap_comm": true,
+        "reduce_scatter": true,
+        "reduce_bucket_size": "auto",
+        "contiguous_gradients": true
+    },
+    
+    "gradient_accumulation_steps": 1,
+    "gradient_clipping": "auto"
+}

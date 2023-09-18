@@ -63,6 +63,7 @@ idr_accelerate is a wrapper for accelerate launcher.
 It intercepts the arguments/configuration files intended for the accelerate launcher, concatenates/modifies them as necessary for operation on Jean Zay. It then saves an accelerated configuration file specific to the nodes to use (mandatory for multi-node).
 It ends up launching the training/inference script with its arguments via the accelerate launcher (which use thr previous accelerate configuration file).
 
+
 ## [Deepspeed in accelerate](https://huggingface.co/docs/accelerate/usage_guides/deepspeed) 
 
 from the official documentation (v0.22.0)
@@ -81,4 +82,47 @@ Currently, Accelerate supports following config through the CLI:
 To be able to tweak more options, you will need to use a DeepSpeed config file.
 
 
+## Accelerate launch arguments
+```
+Accelerate launch command [-h] 
+[--config_file CONFIG_FILE] [--quiet] [--cpu] [--multi_gpu] [--tpu] [--ipex]
+[--mixed_precision {no,fp16,bf16,fp8}] [--num_processes NUM_PROCESSES] [--num_machines NUM_MACHINES]
+[--num_cpu_threads_per_process NUM_CPU_THREADS_PER_PROCESS]
+[--dynamo_backend {no,eager,aot_eager,inductor,nvfuser,aot_nvfuser,aot_cudagraphs,ofi,fx2trt,onnxrt,ipex}]
+[--dynamo_mode {default,reduce-overhead,max-autotune}] [--dynamo_use_fullgraph] [--dynamo_use_dynamic]
+[--use_deepspeed] [--use_fsdp] [--use_megatron_lm] [--use_xpu] [--gpu_ids GPU_IDS] [--same_network]
+[--machine_rank MACHINE_RANK] [--main_process_ip MAIN_PROCESS_IP] [--main_process_port MAIN_PROCESS_PORT]
+[-t TEE] [--role ROLE] [--rdzv_backend RDZV_BACKEND] [--rdzv_conf RDZV_CONF] [--max_restarts MAX_RESTARTS]
+[--monitor_interval MONITOR_INTERVAL] [-m] [--no_python] [--tpu_cluster] [--no_tpu_cluster]
+[--tpu_use_sudo] [--vm VM] [--env ENV] [--main_training_function MAIN_TRAINING_FUNCTION] [--downcast_bf16]
+[--deepspeed_config_file DEEPSPEED_CONFIG_FILE] [--zero_stage ZERO_STAGE]
+[--offload_optimizer_device OFFLOAD_OPTIMIZER_DEVICE] [--offload_param_device OFFLOAD_PARAM_DEVICE]
+[--offload_optimizer_nvme_path OFFLOAD_OPTIMIZER_NVME_PATH]
+[--offload_param_nvme_path OFFLOAD_PARAM_NVME_PATH]
+[--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS] [--gradient_clipping GRADIENT_CLIPPING]
+[--zero3_init_flag ZERO3_INIT_FLAG] [--zero3_save_16bit_model ZERO3_SAVE_16BIT_MODEL]
+[--deepspeed_hostfile DEEPSPEED_HOSTFILE] [--deepspeed_exclusion_filter DEEPSPEED_EXCLUSION_FILTER]
+[--deepspeed_inclusion_filter DEEPSPEED_INCLUSION_FILTER]
+[--deepspeed_multinode_launcher DEEPSPEED_MULTINODE_LAUNCHER] [--fsdp_offload_params FSDP_OFFLOAD_PARAMS]
+[--fsdp_min_num_params FSDP_MIN_NUM_PARAMS] [--fsdp_sharding_strategy FSDP_SHARDING_STRATEGY]
+[--fsdp_auto_wrap_policy FSDP_AUTO_WRAP_POLICY]
+[--fsdp_transformer_layer_cls_to_wrap FSDP_TRANSFORMER_LAYER_CLS_TO_WRAP]
+[--fsdp_backward_prefetch_policy FSDP_BACKWARD_PREFETCH_POLICY]
+[--fsdp_state_dict_type FSDP_STATE_DICT_TYPE] [--fsdp_forward_prefetch FSDP_FORWARD_PREFETCH]
+[--fsdp_use_orig_params FSDP_USE_ORIG_PARAMS] [--fsdp_sync_module_states FSDP_SYNC_MODULE_STATES]
+[--megatron_lm_tp_degree MEGATRON_LM_TP_DEGREE] [--megatron_lm_pp_degree MEGATRON_LM_PP_DEGREE]
+[--megatron_lm_num_micro_batches MEGATRON_LM_NUM_MICRO_BATCHES]
+[--megatron_lm_sequence_parallelism MEGATRON_LM_SEQUENCE_PARALLELISM]
+[--megatron_lm_recompute_activations MEGATRON_LM_RECOMPUTE_ACTIVATIONS]
+[--megatron_lm_use_distributed_optimizer MEGATRON_LM_USE_DISTRIBUTED_OPTIMIZER]
+[--megatron_lm_gradient_clipping MEGATRON_LM_GRADIENT_CLIPPING] [--aws_access_key_id AWS_ACCESS_KEY_ID]
+[--aws_secret_access_key AWS_SECRET_ACCESS_KEY] [--debug]
+    training_script ...
+```
 
+
+
+
+## Local installation for dev
+
+`

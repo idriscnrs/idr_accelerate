@@ -38,7 +38,7 @@ def parse_args():
 
 def train_loop(model, tokenizer, train_dataloader, criterion, optimizer):
     model.train()
-    loop = tqdm(train_dataloader)
+    loop = tqdm(train_dataloader, disable=True)
 
     for data in loop:
         inputs = tokenizer.batch_encode_plus(
@@ -64,7 +64,7 @@ def train_loop(model, tokenizer, train_dataloader, criterion, optimizer):
 def eval_loop(model, tokenizer, test_dataloader):
     metric = BinaryAccuracy().to(DEVICE)
     model.eval()
-    loop = tqdm(test_dataloader)
+    loop = tqdm(test_dataloader,disable=True)
     with torch.no_grad():
         for data in loop:
             inputs = tokenizer.batch_encode_plus(
@@ -125,6 +125,7 @@ def main(args):
 
     model = train_loop(model, tokenizer, train_dataloader, criterion, optimizer)
     accuracy = eval_loop(model, tokenizer, test_dataloader)
+    print("max memory : ",torch.cuda.max_memory_allocated())
 
 
 if __name__ == "__main__":
