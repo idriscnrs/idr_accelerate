@@ -52,7 +52,6 @@ def get_user_config_from_file(user_config_file: Optional[Path]) -> Dict[str, Any
 def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
     default_accelerate_config: Dict[str, Any] = {
         "deepspeed_config": {},
-        "downcast_bf16": "no",
         "fsdp_config": {},
         "main_training_function": "main",
         "megatron_lm_config": {},

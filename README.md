@@ -128,7 +128,7 @@ Accelerate launch command [-h]
 ```bash
 module load llm
 mkdir .local_accelerate
-export PYTHONUSERBASE=$PWD/.local__accelerate:$PYTHONUSERBASE
+export PYTHONUSERBASE=$PWD/.local__accelerate
 
 #mettre dans le slurm
 export PATH=$PWD/.local__accelerate/bin:$PATH
