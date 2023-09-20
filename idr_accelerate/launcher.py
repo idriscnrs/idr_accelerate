@@ -110,7 +110,7 @@ def run() -> None:
     dist_config = make_dist_config(user_config)
     filename = write(dist_config)
     
-    print(dist_config)
+    if (idr_torch.rank==0): print(dist_config)
     
     accelerate_flags = (
         ["--config_file", str(filename)] + other_flags + idr_args.script_flags

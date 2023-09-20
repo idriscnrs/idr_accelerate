@@ -18,6 +18,9 @@
 module purge
 module load pytorch-gpu/py3/2.0.1
 
+export PATH=$WORK/idr_accelerate/.local__accelerate/bin:$PATH
+
+
 # Code execution
 # We give accelerate an accelerate configuration file which in turn points to a 2nd deepspeed configuration file (configs/zero_stage2_config.json)
 srun idr_accelerate --config_file=configs/accelerate_deepspeed-config.yaml train.py --lr 0.5

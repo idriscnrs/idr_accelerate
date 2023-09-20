@@ -126,9 +126,10 @@ Accelerate launch command [-h]
 ## Local installation for dev
 
 ```bash
-module load llm
+module load pytorch-gpu/py3/2.0.1
 mkdir .local_accelerate
-export PYTHONUSERBASE=$PWD/.local__accelerate
+export PYTHONUSERBASE=$PWD/.local_accelerate
+pip install --user --no-cache-dir -e .
 
 #mettre dans le slurm
 export PATH=$PWD/.local__accelerate/bin:$PATH

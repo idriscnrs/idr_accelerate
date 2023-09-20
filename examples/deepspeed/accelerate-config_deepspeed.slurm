@@ -16,7 +16,7 @@
 
 ## Loading Jean-Zay module
 module purge
-module load llm
+module load pytorch-gpu/py3/2.0.1
 
 # Code execution
 # We give accelerate an accelerate configuration file 
