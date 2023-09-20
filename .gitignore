@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 .accelerate_config
 .deepspeed_env
+slurm_log/

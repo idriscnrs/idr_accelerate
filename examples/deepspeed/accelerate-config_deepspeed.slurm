@@ -17,7 +17,6 @@
 ## Loading Jean-Zay module
 module purge
 module load llm
-export PYTHONPATH=/gpfsdswork/projects/idris/sos/ssos029/idr_accelerate/.local_accelerate/lib/python3.10/site-packages/:$PYTHONPATH
 
 # Code execution
 # We give accelerate an accelerate configuration file 
