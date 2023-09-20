@@ -87,7 +87,7 @@ def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
         )
 
     accelerate_config: Dict[str, Any] = dict()
-    accelerate_config.update(**default_accelerate_config)        
+    accelerate_config.update(**default_accelerate_config)
     accelerate_config.update(**distributed_config)
     accelerate_config.update(**user_config)
     accelerate_config.update(**mandatory_jean_zay_config)
