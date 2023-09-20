@@ -56,7 +56,6 @@ def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
         "fsdp_config": {},
         "main_training_function": "main",
         "megatron_lm_config": {},
-        "mixed_precision": "no",
         "same_network": True,
         "use_cpu": False,
     }
@@ -88,10 +87,10 @@ def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
         )
 
     accelerate_config: Dict[str, Any] = dict()
-    accelerate_config.update(**default_accelerate_config)
+    accelerate_config.update(**default_accelerate_config)        
+    accelerate_config.update(**distributed_config)
     accelerate_config.update(**user_config)
     accelerate_config.update(**mandatory_jean_zay_config)
-    accelerate_config.update(**distributed_config)
     return accelerate_config
 
 
@@ -111,12 +110,15 @@ def run() -> None:
     user_config = get_user_config_from_file(idr_args.config_file)
     dist_config = make_dist_config(user_config)
     filename = write(dist_config)
+    
+    print(dist_config)
+    
     accelerate_flags = (
         ["--config_file", str(filename)] + other_flags + idr_args.script_flags
     )
     accelerate_args = accelerate_parser.parse_args(accelerate_flags)
     launch_command(accelerate_args)
 
-
+    
 if __name__ == "__main__":
     run()

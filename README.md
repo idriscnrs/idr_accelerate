@@ -125,4 +125,12 @@ Accelerate launch command [-h]
 
 ## Local installation for dev
 
-`
+```bash
+module load llm
+mkdir .local_accelerate
+export PYTHONUSERBASE=$PWD/.local__accelerate:$PYTHONUSERBASE
+
+#mettre dans le slurm
+export PATH=$PWD/.local__accelerate/bin:$PATH
+
+```
