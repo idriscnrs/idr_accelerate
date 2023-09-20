@@ -1,0 +1,7 @@
+deepspeed_config:
+    offload_optimizer_device: none
+    offload_param_device: none
+    zero3_init_flag: true
+    zero_stage: 2
+distributed_type: DEEPSPEED
+mixed_precision: fp16
