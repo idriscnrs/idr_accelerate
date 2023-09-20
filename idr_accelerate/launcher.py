@@ -52,11 +52,9 @@ def get_user_config_from_file(user_config_file: Optional[Path]) -> Dict[str, Any
 def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
     default_accelerate_config: Dict[str, Any] = {
         "deepspeed_config": {},
-        "downcast_bf16": "no",
         "fsdp_config": {},
         "main_training_function": "main",
         "megatron_lm_config": {},
-        "mixed_precision": "no",
         "same_network": True,
         "use_cpu": False,
     }
@@ -111,12 +109,15 @@ def run() -> None:
     user_config = get_user_config_from_file(idr_args.config_file)
     dist_config = make_dist_config(user_config)
     filename = write(dist_config)
+    
+    if (idr_torch.rank==0): print(dist_config)
+    
     accelerate_flags = (
         ["--config_file", str(filename)] + other_flags + idr_args.script_flags
     )
     accelerate_args = accelerate_parser.parse_args(accelerate_flags)
     launch_command(accelerate_args)
 
-
+    
 if __name__ == "__main__":
     run()

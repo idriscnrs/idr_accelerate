@@ -1,2 +1,8 @@
 .ipynb_checkpoints
 .accelerate_config
+.deepspeed_env
+slurm_log/
+.local_accelerate/
+build/
+idr_accelerate.egg-info/
+__pycache__
