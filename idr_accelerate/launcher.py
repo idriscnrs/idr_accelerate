@@ -14,6 +14,10 @@ from accelerate.commands.launch import launch_command, launch_command_parser
 from packaging.version import Version
 
 
+class BadSlurmConfigError(RuntimeError):
+    pass
+
+
 def make_config_file_parser(accelerate_parser: ArgumentParser) -> ArgumentParser:
     class CustomHelpAction(_HelpAction):
         def __call__(self, parser, namespace, values, option_string=None):
@@ -96,6 +100,15 @@ def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def run() -> None:
+    if idr_torch.local_world_size > 1:
+        raise BadSlurmConfigError(
+            f"Detected {idr_torch.local_world_size} tasks per node. "
+            "Using multi-process accelerate requires to only have one "
+            "process per node since accelerate will take care of "
+            "intra-node multiprocessing and would face port conflicts. "
+            "Please correct your SLURM submission."
+        )
+
     accelerate_parser = launch_command_parser()
     idr_parser = make_config_file_parser(accelerate_parser)
     idr_args, other_flags = idr_parser.parse_known_args()
