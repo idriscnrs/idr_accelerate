@@ -123,8 +123,7 @@ def main(args):
 
     model = train_loop(model, tokenizer, train_dataloader, criterion, optimizer)
     accuracy = eval_loop(model, tokenizer, test_dataloader)
-    print("max memory : ",torch.cuda.max_memory_allocated())
-
+    print("max memory : ", torch.cuda.max_memory_allocated())
 
 
 if __name__ == "__main__":
