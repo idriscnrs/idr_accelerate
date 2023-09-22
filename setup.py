@@ -24,7 +24,7 @@ setup(
     },
     install_requires=[
         "accelerate",
-        "idr_torch>=2.0.0",
+        "idr_torch>=2.0.1",
         "packaging",
         "torch",
     ],
