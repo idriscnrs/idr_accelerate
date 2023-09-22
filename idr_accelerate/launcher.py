@@ -24,6 +24,7 @@ def make_config_file_parser(accelerate_parser: ArgumentParser) -> ArgumentParser
     )
     parser.add_argument("-h", "--help", action=CustomHelpAction)
     parser.add_argument("--config_file", default=None, action="store", type=Path)
+    parser.add_argument("-v", "--verbose", dest="verbose", action="store_true")
     parser.add_argument("script_flags", nargs=REMAINDER)
     return parser
 
@@ -101,8 +102,8 @@ def run() -> None:
     user_config = get_user_config_from_file(idr_args.config_file)
     dist_config = make_dist_config(user_config)
 
-    if idr_torch.rank == 0:
-        print(dist_config)
+    if idr_args.verbose or idr_torch.rank == 0:
+        print(f"Config accelerate rank {idr_torch.rank}: ", dist_config)
 
     with NamedTemporaryFile("w") as file:
         yaml.dump(dist_config, file)
