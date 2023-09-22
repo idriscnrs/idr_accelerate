@@ -4,6 +4,7 @@
 import json
 from argparse import REMAINDER, ArgumentParser, _HelpAction
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 from typing import Any, Dict, Optional
 
 import idr_torch
@@ -93,31 +94,25 @@ def make_dist_config(user_config: Dict[str, Any]) -> Dict[str, Any]:
     return accelerate_config
 
 
-def write(dist_config: Dict[str, Any]) -> Path:
-    folder = Path(".accelerate_config")
-    folder.mkdir(exist_ok=True)
-    filename = folder / f"config_rank_{idr_torch.rank}.yaml"
-    with filename.open("w") as file:
-        yaml.dump(dist_config, file)
-    return filename
-
-
 def run() -> None:
     accelerate_parser = launch_command_parser()
     idr_parser = make_config_file_parser(accelerate_parser)
     idr_args, other_flags = idr_parser.parse_known_args()
     user_config = get_user_config_from_file(idr_args.config_file)
     dist_config = make_dist_config(user_config)
-    filename = write(dist_config)
-    
-    if (idr_torch.rank==0): print(dist_config)
-    
-    accelerate_flags = (
-        ["--config_file", str(filename)] + other_flags + idr_args.script_flags
-    )
-    accelerate_args = accelerate_parser.parse_args(accelerate_flags)
-    launch_command(accelerate_args)
 
-    
+    if idr_torch.rank == 0:
+        print(dist_config)
+
+    with NamedTemporaryFile("w") as file:
+        yaml.dump(dist_config, file)
+
+        accelerate_flags = (
+            ["--config_file", file.name] + other_flags + idr_args.script_flags
+        )
+        accelerate_args = accelerate_parser.parse_args(accelerate_flags)
+        launch_command(accelerate_args)
+
+
 if __name__ == "__main__":
     run()

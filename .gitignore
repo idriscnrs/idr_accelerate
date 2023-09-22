@@ -6,3 +6,6 @@ slurm_log/
 build/
 idr_accelerate.egg-info/
 __pycache__
+slurm.out
+slurm.err
+dist/
