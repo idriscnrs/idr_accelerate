@@ -1,5 +1,21 @@
 # Releases
 
+## Version 2.0.1
+*September 2023*
+
+#### New features
+
+- Added new examples (PR #4).
+- Use tempfile to store accelerate config and delete right after (PR #7).
+- Added a verbose mode (PR #8).
+- Added an error if the launcher is used with multiple tasks per node (PR #9).
+
+#### Bug fixes
+
+- Allow user to override distributed config in case of DeepSpeed distribution (PR #5).
+- Fixed DeepSpeed config (PR #6).
+
+
 ## Version 2.0.0
 *August 2023*
 
